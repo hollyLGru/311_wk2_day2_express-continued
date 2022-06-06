@@ -5,15 +5,15 @@ const bodyParser = require("body-parser");
 // /data/vehicles
 // /data/comments
 // /data/products
-const contacts = require("./data/contacts.js");
-const vehicles = require("./data/contacts.js");
-const comments = require("./data/contacts.js");
-const products = require("./data/contacts.js");
+const { contacts } = require("./data/contacts");
+const { vehicles } = require("./data/vehicles");
+const { comments } = require("./data/comments");
+const { products } = require("./data/products");
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 
 app.listen(port, () => {
  console.log(`Web server is listening on port ${port}!`);
@@ -39,7 +39,7 @@ app.get("/contacts", function(req, res){
     res.json(comments)
   });
 
-  app.get("/contacts", function(req, res){
+  app.get("/data/contacts", function(req, res){
     console.log("GET /products");
     res.json(products)
   });
@@ -50,78 +50,78 @@ app.get("/contacts", function(req, res){
 // "/comments/:id"
 // "/products/:id"
 
-app.get("/contacts/:id", function(req,res){
-    console.log("GET /contacts/:id", req.params.id);
-    let found
-    for(let i=0; i < contacts.length; i++){
-      let item = contacts[i]
-      if(item.id  == req.params.id){ 
-        found = item;
-        break;
-      }
-    }
-    if(found) {
-      res.json(found); 
-      } else {
-      res.sendStatus(404);
-      }
+// app.get("/contacts/:id", function(req,res){
+//     console.log("GET /contacts/:id", req.params.id);
+//     let found
+//     for(let i=0; i < contacts.length; i++){
+//       let item = contacts[i]
+//       if(item._id  == req.params.id){ 
+//         found = item;
+//         break;
+//       }
+//     }
+//     if(found) {
+//       res.json(found); 
+//       } else {
+//       res.sendStatus(404);
+//       }
     
-    }
-    )
+//     }
+//     )
 
-    app.get("/vehicles/:id", function(req,res){
-        console.log("GET /vehicles/:id", req.params.id);
-        let found
-        for(let i=0; i < vehicles.length; i++){
-          let item = vehicles[i]
-          if(item.id  == req.params.id){ 
-            found = item;
-            break;
-          }
-        }
-        if(found) {
-          res.json(found); 
-          } else {
-          res.sendStatus(404);
-          }
+//     app.get("/vehicles/:id", function(req,res){
+//         console.log("GET /vehicles/:id", req.params.id);
+//         let found
+//         for(let i=0; i < vehicles.length; i++){
+//           let item = vehicles[i]
+//           if(item._id  == req.params.id){ 
+//             found = item;
+//             break;
+//           }
+//         }
+//         if(found) {
+//           res.json(found); 
+//           } else {
+//           res.sendStatus(404);
+//           }
         
-        }
-        )
+//         }
+//         )
 
-        app.get("/products/:id", function(req,res){
-            console.log("GET /products/:id", req.params.id);
-            let found
-            for(let i=0; i < products.length; i++){
-              let item = products[i]
-              if(item.id  == req.params.id){ 
-                found = item;
-                break;
-              }
-            }
-            if(found) {
-              res.json(found); 
-              } else {
-              res.sendStatus(404);
-              }
+//         app.get("/products/:id", function(req,res){
+//             console.log("GET /products/:id", req.params.id);
+//             let found
+//             for(let i=0; i < products.length; i++){
+//               let item = products[i]
+//               if(item._id  == req.params.id){ 
+//                 found = item;
+//                 break;
+//               }
+//             }
+//             if(found) {
+//               res.json(found); 
+//               } else {
+//               res.sendStatus(404);
+//               }
             
-            }
-            )
+//             }
+//             )
 
-            app.get("/comments/:id", function(req,res){
-                console.log("GET /comments/:id", req.params.id);
-                let found
-                for(let i=0; i < comments.length; i++){
-                  let item = comments[i]
-                  if(item.id  == req.params.id){ 
-                    found = item;
-                    break;
-                  }
-                }
-                if(found) {
-                  res.json(found); 
-                  } else {
-                  res.sendStatus(404);
-                  }
+//             app.get("/comments/:id", function(req,res){
+//                 console.log("GET /comments/:id", req.params.id);
+//                 let found
+//                 for(let i=0; i < comments.length; i++){
+//                   let item = comments[i]
+//                   if(item._id  == req.params.id){ 
+//                     found = item;
+//                     break;
+//                   }
+//                 }
+//                 if(found) {
+//                   res.json(found); 
+//                   } else {
+//                   res.sendStatus(404);
+//                   }
                 
-                }
-                )
+//                 }
+//                 )
