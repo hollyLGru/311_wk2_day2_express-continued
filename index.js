@@ -5,15 +5,16 @@ const bodyParser = require("body-parser");
 // /data/vehicles
 // /data/comments
 // /data/products
-const { contacts } = require("./data/contacts");
-const { vehicles } = require("./data/vehicles");
-const { comments } = require("./data/comments");
-const { products } = require("./data/products");
+const contacts  = require("./data/contacts");
+const vehicles  = require("./data/vehicles");
+const comments  = require("./data/comments");
+const products  = require("./data/products");
 const app = express();
 
-app.use(bodyParser.json());
+
 app.use(express.static('public'));
-const port = process.env.PORT || 4001;
+app.use(bodyParser.json());
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
  console.log(`Web server is listening on port ${port}!`);
@@ -39,7 +40,7 @@ app.get("/contacts", function(req, res){
     res.json(comments)
   });
 
-  app.get("/data/contacts", function(req, res){
+  app.get("/products", function(req, res){
     console.log("GET /products");
     res.json(products)
   });
@@ -50,78 +51,51 @@ app.get("/contacts", function(req, res){
 // "/comments/:id"
 // "/products/:id"
 
-// app.get("/contacts/:id", function(req,res){
-//     console.log("GET /contacts/:id", req.params.id);
-//     let found
-//     for(let i=0; i < contacts.length; i++){
-//       let item = contacts[i]
-//       if(item._id  == req.params.id){ 
-//         found = item;
-//         break;
-//       }
-//     }
-//     if(found) {
-//       res.json(found); 
-//       } else {
-//       res.sendStatus(404);
-//       }
-    
-//     }
-//     )
+app.get("/contacts/:id", function(req, res){
+    console.log("GET /contacts/:id", req.params.id);
+    let paramID = req.params.id;
+    const foundContact = contacts.find(element => element._id  == paramID);
+    res.json(foundContact);
+})
 
-//     app.get("/vehicles/:id", function(req,res){
-//         console.log("GET /vehicles/:id", req.params.id);
-//         let found
-//         for(let i=0; i < vehicles.length; i++){
-//           let item = vehicles[i]
-//           if(item._id  == req.params.id){ 
-//             found = item;
-//             break;
-//           }
-//         }
-//         if(found) {
-//           res.json(found); 
-//           } else {
-//           res.sendStatus(404);
-//           }
-        
-//         }
-//         )
+app.get("/vehicles/:id", function(req, res){
+    console.log("GET /vehicles/:id", req.params.id);
+    let paramID = req.params.id;
+    const foundVehicles = vehicles.find(element => element._id  == paramID);
+    res.json(foundVehicles);
+})
 
-//         app.get("/products/:id", function(req,res){
-//             console.log("GET /products/:id", req.params.id);
-//             let found
-//             for(let i=0; i < products.length; i++){
-//               let item = products[i]
-//               if(item._id  == req.params.id){ 
-//                 found = item;
-//                 break;
-//               }
-//             }
-//             if(found) {
-//               res.json(found); 
-//               } else {
-//               res.sendStatus(404);
-//               }
-            
-//             }
-//             )
+app.get("/comments/:id", function(req, res){
+    console.log("GET /comments/:id", req.params.id);
+    let paramID = req.params.id;
+    const foundComments = comments.find(element => element._id  == paramID);
+    res.json(foundComments);
+})
 
-//             app.get("/comments/:id", function(req,res){
-//                 console.log("GET /comments/:id", req.params.id);
-//                 let found
-//                 for(let i=0; i < comments.length; i++){
-//                   let item = comments[i]
-//                   if(item._id  == req.params.id){ 
-//                     found = item;
-//                     break;
-//                   }
-//                 }
-//                 if(found) {
-//                   res.json(found); 
-//                   } else {
-//                   res.sendStatus(404);
-//                   }
-                
-//                 }
-//                 )
+app.get("/products/:id", function(req, res){
+    console.log("GET /products/:id", req.params.id);
+    let paramID = req.params.id;
+    const foundProducts = products.find(element => element._id  == paramID);
+    res.json(foundProducts);
+})
+
+// Add app.post() routes for the following:
+// "/contacts"
+// "/vehicles"
+// "/comments"
+// "/products"
+
+// "_id": 1,
+//     "name": "Dale Cooper",
+//     "occupation": "FBI Agent",
+//     "avatar": "https://upload.wikimedia.org/wikipedia/en/5/50/Agentdalecooper.jpg"
+ 
+app.post("/contacts", function(req, res){
+let newContact = {};
+newContact._id = contacts.length + 1; 
+newContact.name = req.body.name;
+newContact.occupation = req.body.occupation;
+newContact.avatar = req.body.avatar;
+contacts.push(newContact);
+res.json(newContact)
+  })
