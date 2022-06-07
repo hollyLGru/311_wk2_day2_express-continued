@@ -94,8 +94,88 @@ app.post("/contacts", function(req, res){
 let newContact = {};
 newContact._id = contacts.length + 1; 
 newContact.name = req.body.name;
+console.log(req.body.name);
 newContact.occupation = req.body.occupation;
 newContact.avatar = req.body.avatar;
 contacts.push(newContact);
 res.json(newContact)
   })
+
+//   "_id": 1,
+//     "body": "ACA is great!",
+//     "postId": 1
+
+  app.post("/comments", function(req, res){
+    let newComment = {};
+    newComment._id = comments.length + 1; 
+    newComment.body = req.body.body;
+    newComment.postId = 1;
+    comments.push(newComment);
+    res.json(newComment)
+      })
+
+    //   {
+    //     "_id": 3,
+    //     "name": "Almond",
+    //     "description": "Other disorders of continuity of bone, unsp tibia and fibula",
+    //     "rating": 5,
+    //     "imgUrl": "http://dummyimage.com/149x190.jpg/dddddd/000000",
+    //     "price": "$51.83",
+    //     "category": "food",
+    //     "reviews": [{
+    //       "description": "architect revolutionary deliverables",
+    //       "rating": 2
+    //     }, {
+    //       "description": "orchestrate dynamic schemas",
+    //       "rating": 2
+    //     }, {
+    //       "description": "aggregate integrated convergence",
+    //       "rating": 4
+    //     }
+    //   ]
+    //   },
+
+      app.post("/products", function(req, res){
+        let newProduct = {};
+        newProduct._id = products.length + 1; 
+        newProduct.name = req.body.name;
+        newProduct.description = req.body.description;
+        newProduct.rating = req.body.rating;
+        newProduct.imgURL = req.body.imgURL;
+        newProduct.price = req.body.price;
+        newProduct.category = req.body.category;
+        newProduct.reviews = req.body.reviews;
+        contacts.push(newProduct);
+        res.json(newProduct)
+          })
+
+        //   {
+        //     "_id": 1,
+        //     "imgUrl": "./featured-img-1.jpg",
+        //     "year": "2004",
+        //     "make": "HONDA",
+        //     "model": "Accord",
+        //     "price": "$7456.40",
+        //     "km": 34720,
+        //     "miles": 10615,
+        //     "fuel": "Gas",
+        //     "city": "Colca",
+        //     "isNew": false
+        //   }
+
+        app.post("/vehicles", function(req, res){
+            let newVehicle = {};
+            newVehicle._id = vehicles.length + 1; 
+            newVehicle.imgURL = req.body.imgURL;
+            newVehicle.year = req.body.year;
+            newVehicle.make = req.body.make;
+            newVehicle.model = req.body.model;
+            newVehicle.price = req.body.price;
+            newVehicle.km = req.body.km;
+            newVehicle.miles = req.body.miles;
+            newVehicle.isNew = req.body.isNew;
+            newVehicle.fuel = req.body.fuel;
+            newVehicle.city = req.body.city;
+            contacts.push(newVehicle);
+            res.json(newVehicle)
+              })
