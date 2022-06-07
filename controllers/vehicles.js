@@ -2,7 +2,8 @@ const vehicles = require("../data/vehicles");
 
 // this function is like GET all of the vehicles available
 const list = (req, res) => {
-	res.json(contacts);
+	console.log("vehicles");
+	res.json(vehicles);
 };
 
 

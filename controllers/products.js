@@ -2,7 +2,7 @@ const products = require("../data/products");
 
 // this function is like GET all of the products available
 const list = (req, res) => {
-	res.json(contacts);
+	res.json(products);
 };
 
 

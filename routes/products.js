@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const productsController = require('../controllers/products');
-
+router.get('/products');
 router.get("/products", productsController.list);
 
 // route to see all the products
